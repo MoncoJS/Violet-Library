@@ -1,6 +1,6 @@
 {
   "name": "violet-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Vue 3 component library for SaaS dashboards: forms, overlays, navigation, data table, theming.",
   "license": "MIT",
   "author": "MoncoJS",
