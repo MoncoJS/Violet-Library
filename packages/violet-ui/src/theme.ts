@@ -430,6 +430,7 @@ export function createTheme(
 
 const PREFIX = '--v'
 export const THEME_ATTR = 'data-v-theme'
+export const THEME_ATTRIBUTE = THEME_ATTR
 const kebab = (s: string) => s.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)
 
 export function themeToVars(theme: ThemeDefinition): Record<string, string> {

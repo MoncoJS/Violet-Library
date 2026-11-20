@@ -7,4 +7,6 @@ export const sourceAliases = [
   { find: /^violet-ui\/resolver$/, replacement: pkg('resolver.ts') },
   { find: /^violet-ui\/style\.css$/, replacement: pkg('style.css') },
   { find: /^violet-ui$/, replacement: pkg('index.ts') },
+  // Former split packages (`@violet-ui/theme`, `@violet-ui/core`, …) now live in `violet-ui`.
+  { find: /^@violet-ui\/[a-z-]+$/, replacement: pkg('index.ts') },
 ]
