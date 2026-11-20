@@ -3,6 +3,8 @@ import { sourceAliases } from '../../../tooling/aliases'
 
 export default defineConfig({
   title: 'Violet UI',
+  // GitHub Pages serves the site under /<repo>/; set DOCS_BASE in CI.
+  base: process.env.DOCS_BASE ?? '/',
   description: 'Premium, accessible Vue 3 components for SaaS and enterprise apps.',
   cleanUrls: true,
   lastUpdated: true,

@@ -51,8 +51,8 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  deploy-storybook:
-    name: Deploy Storybook to GitHub Pages
+  deploy-site:
+    name: Deploy docs + Storybook to GitHub Pages
     if: github.repository_owner == 'MoncoJS'
     runs-on: ubuntu-latest
     permissions:
@@ -71,9 +71,14 @@ jobs:
         with:
           node-version: 22
       - run: bun install --frozen-lockfile
-      - run: bun run storybook:build
+      - name: Build docs
+        run: bun run --cwd apps/docs build
+        env:
+          DOCS_BASE: /${{ github.event.repository.name }}/
+      - name: Build Storybook into the docs site
+        run: bun run storybook:build -- -o apps/docs/.vitepress/dist/storybook
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: storybook-static
+          path: apps/docs/.vitepress/dist
       - id: deployment
         uses: actions/deploy-pages@v4
