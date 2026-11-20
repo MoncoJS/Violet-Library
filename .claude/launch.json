@@ -4,22 +4,8 @@
     {
       "name": "playground",
       "runtimeExecutable": "bun",
-      "runtimeArgs": ["run", "--cwd", "apps/playground", "dev"],
+      "runtimeArgs": ["run", "dev"],
       "port": 5173
-    },
-    {
-      "name": "storybook-static",
-      "runtimeExecutable": "bunx",
-      "runtimeArgs": [
-        "vite",
-        "preview",
-        "--outDir",
-        "storybook-static",
-        "--port",
-        "6007",
-        "--strictPort"
-      ],
-      "port": 6007
     }
   ]
 }
