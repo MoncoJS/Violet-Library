@@ -1,0 +1,472 @@
+/*
+ * Micro-interactions. Everything here is decorative and only runs when the
+ * user has not asked for reduced motion.
+ */
+
+/* ripple element is always clipped; it only animates when motion is allowed */
+.v-button {
+  overflow: hidden;
+  isolation: isolate;
+}
+.v-button__ripple {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ---------- buttons ---------- */
+  .v-button__ripple {
+    animation: v-ripple 600ms var(--v-easing-decelerate);
+  }
+  .v-button--solid:not(.is-disabled, .is-loading):hover {
+    box-shadow: var(--v-shadow-md);
+    transform: translateY(-1px);
+  }
+  .v-button--solid:not(.is-disabled, .is-loading):active {
+    box-shadow: var(--v-shadow-xs);
+    transform: translateY(0) scale(0.98);
+  }
+  .v-button__icon svg {
+    transition: transform var(--v-duration-normal) var(--v-easing-emphasized);
+  }
+  .v-button:not(.is-disabled, .is-loading):hover .v-button__icon:last-child:not(:first-child) svg {
+    transform: translateX(2px);
+  }
+  .v-icon-button:not(.is-disabled):hover .v-icon-button__icon svg {
+    transform: scale(1.12);
+  }
+
+  /* ---------- inputs: label follows focus ---------- */
+  .v-field__label,
+  .v-input__label {
+    transition: color var(--v-duration-fast) var(--v-easing-standard);
+  }
+  .v-field:focus-within:not(.is-invalid, .v-field--group) > .v-field__label,
+  .v-input.is-focused:not(.is-invalid) .v-input__label {
+    color: var(--v-color-primary-soft-text);
+  }
+  .v-input.is-invalid .v-input__control,
+  .v-field.is-invalid .v-select__trigger,
+  .v-textarea.is-invalid,
+  .v-number.is-invalid {
+    animation: v-shake 320ms var(--v-easing-standard);
+  }
+  .v-input__affix svg,
+  .v-select__icon svg {
+    transition: color var(--v-duration-fast);
+  }
+  .v-input.is-focused .v-input__affix--prefix,
+  .v-select.is-open .v-select__icon {
+    color: var(--v-color-primary);
+  }
+
+  /* ---------- select ---------- */
+  .v-select__option {
+    transition:
+      background-color var(--v-duration-fast),
+      padding-left var(--v-duration-fast) var(--v-easing-standard);
+  }
+  .v-select__option.is-active:not(.is-disabled) {
+    padding-left: calc(var(--v-space-3) + 2px);
+  }
+  .v-select__tag {
+    animation: v-pop-in 180ms var(--v-easing-emphasized);
+  }
+  .v-select__check svg,
+  .v-select__tick {
+    animation: v-pop-in 160ms var(--v-easing-emphasized);
+  }
+
+  /* ---------- checkbox / radio / switch ---------- */
+  .v-check__box {
+    transition:
+      background-color var(--v-duration-fast),
+      border-color var(--v-duration-fast),
+      box-shadow var(--v-duration-normal),
+      transform var(--v-duration-fast) var(--v-easing-emphasized);
+  }
+  .v-check:active:not(.is-disabled) .v-check__box {
+    transform: scale(0.88);
+  }
+  .v-check:hover:not(.is-disabled) .v-check__box {
+    box-shadow: 0 0 0 4px var(--_soft, var(--v-color-primary-soft));
+  }
+  .v-check.is-checked .v-check__box svg {
+    animation: v-check-draw 220ms var(--v-easing-emphasized);
+  }
+  .v-switch__thumb {
+    transition:
+      transform var(--v-duration-normal) var(--v-easing-emphasized),
+      width var(--v-duration-fast) var(--v-easing-standard);
+  }
+  .v-switch:active:not(.is-disabled) .v-switch__thumb {
+    width: calc(var(--_h) + 2px);
+  }
+  .v-switch.is-on:active:not(.is-disabled) .v-switch__thumb {
+    transform: translateX(calc(var(--_w) - var(--_h) - 6px));
+  }
+  .v-switch:hover:not(.is-disabled) .v-switch__track {
+    box-shadow: 0 0 0 4px var(--_soft, var(--v-color-primary-soft));
+  }
+  .v-choice-group--cards .v-check {
+    transition:
+      border-color var(--v-duration-fast),
+      box-shadow var(--v-duration-fast),
+      transform var(--v-duration-fast) var(--v-easing-standard);
+  }
+  .v-choice-group--cards .v-check:hover:not(.is-disabled) {
+    transform: translateY(-1px);
+    box-shadow: var(--v-shadow-sm);
+  }
+
+  /* ---------- number / password ---------- */
+  .v-number__btn:active:not(:disabled) svg {
+    transform: scale(0.8);
+  }
+  .v-number__btn svg,
+  .v-password__toggle svg {
+    transition: transform var(--v-duration-fast) var(--v-easing-emphasized);
+  }
+  .v-password__toggle:active svg {
+    transform: rotate(-12deg) scale(0.9);
+  }
+  .v-password__bars span {
+    transition:
+      background-color var(--v-duration-normal),
+      transform var(--v-duration-normal) var(--v-easing-emphasized);
+  }
+  .v-password__bars .is-on {
+    transform: scaleY(1.5);
+  }
+
+  /* ---------- calendar ---------- */
+  .v-calendar__day {
+    transition:
+      background-color var(--v-duration-fast),
+      transform var(--v-duration-fast) var(--v-easing-emphasized);
+  }
+  .v-calendar__day:hover:not(:disabled, .is-selected) {
+    transform: scale(1.08);
+  }
+  .v-calendar__day.is-selected {
+    animation: v-pop-in 200ms var(--v-easing-emphasized);
+  }
+
+  /* ---------- upload ---------- */
+  .v-upload__zone.is-dragging .v-upload__icon,
+  .v-upload__zone:hover .v-upload__icon {
+    animation: v-float 900ms var(--v-easing-standard) infinite alternate;
+  }
+  .v-upload__item {
+    animation: v-slide-up 240ms var(--v-easing-decelerate);
+  }
+  .v-image-upload__img {
+    transition: transform var(--v-duration-slow) var(--v-easing-standard);
+  }
+  .v-image-upload__box:hover .v-image-upload__img {
+    transform: scale(1.05);
+  }
+
+  /* ---------- feedback ---------- */
+  .v-alert {
+    animation: v-slide-up 280ms var(--v-easing-decelerate);
+  }
+  .v-progress__bar {
+    position: relative;
+    overflow: hidden;
+  }
+  .v-progress:not(.is-indeterminate, .is-striped) .v-progress__bar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.35), transparent);
+    transform: translateX(-100%);
+    animation: v-sheen 2.2s var(--v-easing-standard) infinite;
+  }
+  .v-badge {
+    animation: v-pop-in 240ms var(--v-easing-emphasized);
+  }
+  .v-badge--dot.v-badge--attached::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: v-ping 1.6s var(--v-easing-decelerate) infinite;
+  }
+  .v-toast__icon svg {
+    animation: v-pop-in 300ms 80ms var(--v-easing-emphasized) both;
+  }
+
+  /* ---------- overlays ---------- */
+  .v-tooltip {
+    animation: v-tooltip-in 140ms var(--v-easing-decelerate);
+  }
+  .v-menu > li {
+    animation: v-slide-up 200ms var(--v-easing-decelerate) both;
+  }
+  .v-menu > li:nth-child(2) {
+    animation-delay: 20ms;
+  }
+  .v-menu > li:nth-child(3) {
+    animation-delay: 40ms;
+  }
+  .v-menu > li:nth-child(4) {
+    animation-delay: 60ms;
+  }
+  .v-menu > li:nth-child(5) {
+    animation-delay: 80ms;
+  }
+  .v-menu > li:nth-child(n + 6) {
+    animation-delay: 100ms;
+  }
+  .v-menu__icon {
+    transition: transform var(--v-duration-fast) var(--v-easing-emphasized);
+  }
+  .v-menu__item:hover .v-menu__icon,
+  .v-menu__item:focus-visible .v-menu__icon {
+    transform: translateX(2px);
+  }
+  .v-dialog__icon {
+    animation: v-pop-in 320ms 80ms var(--v-easing-emphasized) both;
+  }
+  .v-modal__close svg {
+    transition: transform var(--v-duration-normal) var(--v-easing-emphasized);
+  }
+  .v-modal__close:hover svg {
+    transform: rotate(90deg);
+  }
+
+  /* ---------- navigation ---------- */
+  .v-tabs__panel {
+    animation: v-fade-in 220ms var(--v-easing-decelerate);
+  }
+  .v-tabs__tab:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .v-tabs--segmented .v-tabs__tab {
+    transition:
+      background-color var(--v-duration-normal),
+      box-shadow var(--v-duration-normal),
+      color var(--v-duration-fast);
+  }
+  .v-pagination__btn {
+    transition:
+      background-color var(--v-duration-fast),
+      transform var(--v-duration-fast) var(--v-easing-emphasized);
+  }
+  .v-pagination__btn:active:not(:disabled) {
+    transform: scale(0.92);
+  }
+  .v-pagination__page.is-active {
+    animation: v-pop-in 200ms var(--v-easing-emphasized);
+  }
+  .v-breadcrumb__link {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition:
+      background-size var(--v-duration-normal) var(--v-easing-standard),
+      color var(--v-duration-fast);
+  }
+  .v-breadcrumb__link:hover {
+    background-size: 100% 1px;
+    text-decoration: none;
+  }
+
+  /* ---------- data display ---------- */
+  .v-avatar {
+    transition: transform var(--v-duration-normal) var(--v-easing-emphasized);
+  }
+  a:hover > .v-avatar,
+  button:hover > .v-avatar {
+    transform: scale(1.06);
+  }
+  .v-avatar__status.is-online {
+    animation: v-pulse-ring 2s var(--v-easing-standard) infinite;
+  }
+  .v-chip {
+    transition:
+      background-color var(--v-duration-fast),
+      border-color var(--v-duration-fast),
+      transform var(--v-duration-fast) var(--v-easing-emphasized);
+  }
+  .v-chip.is-interactive:active:not(.is-disabled) {
+    transform: scale(0.95);
+  }
+  .v-chip__icon {
+    animation: v-pop-in 200ms var(--v-easing-emphasized);
+  }
+  .v-chip__close svg {
+    transition: transform var(--v-duration-normal) var(--v-easing-emphasized);
+  }
+  .v-chip__close:hover svg {
+    transform: rotate(90deg);
+  }
+  .v-card.is-interactive:active {
+    transform: translateY(0) scale(0.995);
+  }
+  .v-list__item.is-interactive {
+    transition: background-color var(--v-duration-fast);
+  }
+  .v-list__chevron {
+    transition: transform var(--v-duration-normal) var(--v-easing-emphasized);
+  }
+  .v-list__item.is-interactive:hover .v-list__chevron {
+    transform: translateX(3px);
+  }
+  .v-accordion__content {
+    animation: v-fade-in 260ms var(--v-easing-decelerate);
+  }
+  .v-timeline__item {
+    animation: v-slide-up 320ms var(--v-easing-decelerate) both;
+  }
+  .v-timeline__item:nth-child(2) {
+    animation-delay: 60ms;
+  }
+  .v-timeline__item:nth-child(3) {
+    animation-delay: 120ms;
+  }
+  .v-timeline__item:nth-child(n + 4) {
+    animation-delay: 180ms;
+  }
+  .v-empty__icon {
+    animation: v-float 2.4s var(--v-easing-standard) infinite alternate;
+  }
+
+  /* ---------- data table ---------- */
+  .v-table__row .v-table__td {
+    transition: background-color var(--v-duration-fast);
+  }
+  .v-table__sort-icon {
+    transition:
+      transform var(--v-duration-normal) var(--v-easing-emphasized),
+      opacity var(--v-duration-fast);
+  }
+  .v-table__sort:hover .v-table__sort-icon {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+  .v-table__bulk {
+    animation: v-slide-up 220ms var(--v-easing-decelerate);
+  }
+}
+
+@keyframes v-ripple {
+  from {
+    opacity: 0.22;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+@keyframes v-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+}
+@keyframes v-pop-in {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes v-check-draw {
+  from {
+    clip-path: inset(0 100% 0 0);
+    transform: scale(0.7);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+}
+@keyframes v-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes v-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes v-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-4px);
+  }
+}
+@keyframes v-sheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  60%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+@keyframes v-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  80%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+@keyframes v-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--v-color-success) 55%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+@keyframes v-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

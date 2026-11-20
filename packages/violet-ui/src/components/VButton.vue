@@ -58,6 +58,20 @@ function onClick(e: MouseEvent) {
   emit('click', e)
 }
 
+/** Material-style ripple from the press point (CSS hides it for reduced motion). */
+function onPointerdown(e: PointerEvent) {
+  if (inert.value || variant.value === 'link' || e.button !== 0) return
+  const el = e.currentTarget as HTMLElement
+  const rect = el.getBoundingClientRect()
+  const size = Math.max(rect.width, rect.height) * 2
+  const ripple = document.createElement('span')
+  ripple.className = 'v-button__ripple'
+  ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX - rect.left - size / 2}px;top:${e.clientY - rect.top - size / 2}px`
+  el.appendChild(ripple)
+  ripple.addEventListener('animationend', () => ripple.remove(), { once: true })
+  setTimeout(() => ripple.remove(), 800)
+}
+
 function onKeydown(e: KeyboardEvent) {
   if (isNative.value || isLink.value) return
   if (e.key === 'Enter' || e.key === ' ') {
@@ -74,6 +88,7 @@ function onKeydown(e: KeyboardEvent) {
     v-bind="attrs"
     :aria-busy="loading ? 'true' : undefined"
     @click="onClick"
+    @pointerdown="onPointerdown"
     @keydown="onKeydown"
   >
     <span v-if="loading" class="v-button__icon v-button__loader">

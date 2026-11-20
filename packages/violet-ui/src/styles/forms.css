@@ -19,6 +19,15 @@
   line-height: var(--v-line-height-tight);
   color: var(--v-color-text);
 }
+/* a fieldset's legend ignores flex gap, so space it explicitly */
+.v-field--group > .v-field__label {
+  margin-bottom: var(--v-space-2);
+  float: none;
+}
+.v-field--group > .v-field__hint,
+.v-field--group > .v-field__error {
+  margin-top: var(--v-space-2);
+}
 .v-field__required {
   color: var(--v-color-danger);
 }
@@ -347,7 +356,8 @@
   display: flex;
   align-items: center;
   gap: var(--v-space-2);
-  padding: var(--v-space-2) var(--v-space-2);
+  min-height: 2.25rem;
+  padding: var(--v-space-2) var(--v-space-3);
   border-radius: var(--v-radius-sm);
   cursor: pointer;
   user-select: none;

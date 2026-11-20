@@ -7,6 +7,7 @@ import './styles/feedback-overlay.css'
 import './styles/nav-display.css'
 import './styles/table.css'
 import './styles/roles.css'
+import './styles/motion.css'
 import { createThemeManager, isClient, type ThemeManager, type ThemeManagerOptions } from './theme'
 import { createToastStore, TOAST_KEY, type ToastStore, type ToastStoreOptions } from './toast'
 

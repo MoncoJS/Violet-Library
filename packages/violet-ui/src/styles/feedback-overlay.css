@@ -3,7 +3,7 @@
   display: flex;
   align-items: flex-start;
   gap: var(--v-space-3);
-  padding: var(--v-space-3) var(--v-space-4);
+  padding: var(--v-space-4);
   border: 1px solid transparent;
   border-radius: var(--v-radius-md);
   font-family: var(--v-font-family);
@@ -38,7 +38,7 @@
 .v-alert__icon {
   display: inline-flex;
   flex-shrink: 0;
-  padding-top: 2px;
+  padding-top: 0.15em;
   font-size: 1.15em;
 }
 .v-alert__body {
@@ -47,13 +47,18 @@
 }
 .v-alert__title {
   margin: 0;
+  color: inherit;
+  font-size: var(--v-font-size-md);
   font-weight: var(--v-font-weight-semibold);
+  line-height: var(--v-line-height-normal);
 }
 .v-alert__description {
-  opacity: 0.92;
+  color: inherit;
+  font-size: var(--v-font-size-sm);
+  opacity: 0.88;
 }
 .v-alert__title + .v-alert__description {
-  margin-top: 2px;
+  margin-top: var(--v-space-1);
 }
 .v-alert__actions {
   display: flex;

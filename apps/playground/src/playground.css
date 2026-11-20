@@ -64,7 +64,7 @@ body {
   font-size: var(--v-font-size-lg);
 }
 
-.pg-card p {
+.pg-card > p {
   margin: 0;
   color: var(--v-color-text-muted);
   font-size: var(--v-font-size-sm);
