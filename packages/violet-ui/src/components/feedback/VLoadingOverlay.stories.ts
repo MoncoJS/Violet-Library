@@ -21,3 +21,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+// ---- more examples
+export const NoText: Story = { args: {} }
+export const Blur: Story = { args: { blur: true } }
+export const NotLoading: Story = { args: { loading: false } }

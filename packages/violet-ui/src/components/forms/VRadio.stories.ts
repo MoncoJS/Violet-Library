@@ -12,7 +12,14 @@ const meta = {
   },
   render: (args) => ({
     components: { VRadio },
-    setup: () => ({ args, value: ref('a') }),
+    setup: () => ({
+      args,
+      value: ref(
+        (args as unknown as Record<string, unknown>).modelValue ??
+          (args as unknown as Record<string, unknown>).selected ??
+          'a',
+      ),
+    }),
     template: '<VRadio v-bind="args" v-model="value" />',
   }),
 } satisfies Meta<typeof VRadio>
@@ -21,3 +28,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+// ---- more examples
+export const Unchecked: Story = { args: { modelValue: 'b' } }
+export const Disabled: Story = { args: { disabled: true } }
+export const Large: Story = { args: { size: 'lg' } }

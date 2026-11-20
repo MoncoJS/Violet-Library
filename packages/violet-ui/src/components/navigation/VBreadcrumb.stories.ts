@@ -1,4 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import * as icons from '../../icons'
+import * as components from '../index'
+import { useToast } from '../../toast'
 import VBreadcrumb from './VBreadcrumb.vue'
 
 const meta = {
@@ -40,3 +43,21 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+const all = components as unknown as Record<string, object>
+void useToast
+
+// ---- more examples
+export const Short: Story = {
+  args: { items: [{ label: 'Home', href: '#' }, { label: 'Settings' }] },
+}
+export const Collapsed: Story = { args: { maxItems: 3 } }
+export const ChevronSeparator: Story = { args: { separator: '›' } }
+export const WithIcons: Story = {
+  render: () => ({
+    components: all,
+    setup: () => ({ icons }),
+    template:
+      "<VBreadcrumb :items=\"[{label:'Home',href:'#',icon:icons.IconHome},{label:'Users',href:'#',icon:icons.IconUser},{label:'Ada Lovelace'}]\" />",
+  }),
+}

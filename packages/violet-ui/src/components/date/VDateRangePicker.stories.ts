@@ -12,7 +12,14 @@ const meta = {
   },
   render: (args) => ({
     components: { VDateRangePicker },
-    setup: () => ({ args, value: ref(null) }),
+    setup: () => ({
+      args,
+      value: ref(
+        (args as unknown as Record<string, unknown>).modelValue ??
+          (args as unknown as Record<string, unknown>).selected ??
+          null,
+      ),
+    }),
     template: '<VDateRangePicker v-bind="args" v-model="value" />',
   }),
 } satisfies Meta<typeof VDateRangePicker>
@@ -21,3 +28,10 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+// ---- more examples
+export const WithValue: Story = { args: { modelValue: ['2026-11-03', '2026-11-16'] } }
+export const OneMonth: Story = { args: { months: 1 } }
+export const NoPresets: Story = { args: { presets: false } }
+export const WithError: Story = { args: { error: 'Choose a range' } }
+export const Disabled: Story = { args: { disabled: true } }

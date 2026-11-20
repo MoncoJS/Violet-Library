@@ -31,3 +31,18 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+// ---- more examples
+export const Multiple: Story = { args: { multiple: true } }
+export const Separated: Story = { args: { variant: 'separated' } }
+export const Flush: Story = { args: { variant: 'flush' } }
+export const OpenByDefault: Story = { args: { modelValue: [1] } }
+export const WithDisabled: Story = {
+  args: {
+    items: [
+      { value: 1, title: 'Shipping', content: 'Free shipping over $50.' },
+      { value: 2, title: 'Returns', content: '30-day returns.' },
+      { value: 3, title: 'Warranty (coming soon)', disabled: true },
+    ],
+  },
+}

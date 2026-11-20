@@ -15,7 +15,14 @@ const meta = {
   },
   render: (args) => ({
     components: { VSnackbar, VButton },
-    setup: () => ({ args, value: ref(false) }),
+    setup: () => ({
+      args,
+      value: ref(
+        (args as unknown as Record<string, unknown>).modelValue ??
+          (args as unknown as Record<string, unknown>).selected ??
+          false,
+      ),
+    }),
     template:
       '<VButton @click="value = true">Show snackbar</VButton><VSnackbar v-bind="args" v-model="value" />',
   }),
@@ -25,3 +32,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+// ---- more examples
+export const Success: Story = { args: { color: 'success', text: 'Changes saved' } }
+export const Danger: Story = {
+  args: { color: 'danger', text: 'Failed to save', actionLabel: 'Retry' },
+}
+export const TopPosition: Story = { args: { position: 'top' } }
+export const AutoHide: Story = { args: { timeout: 3000, closable: false } }
