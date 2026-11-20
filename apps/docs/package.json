@@ -1,0 +1,17 @@
+{
+  "name": "@violet-ui/docs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "violet-ui": "workspace:*"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.3"
+  }
+}

@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      storybook:
+        patterns: ['storybook', '@storybook/*']
+      vue:
+        patterns: ['vue', '@vue/*', '@vitejs/plugin-vue', 'vue-tsc']
+      tooling:
+        patterns:
+          ['vite', 'vitest', '@vitest/*', 'typescript', 'eslint*', 'typescript-eslint', 'turbo']

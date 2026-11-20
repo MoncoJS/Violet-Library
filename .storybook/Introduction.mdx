@@ -1,0 +1,19 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Introduction" />
+
+# Violet UI
+
+A premium, accessible Vue 3 component library for SaaS dashboards and enterprise apps.
+
+- **Themeable** — every visual decision is a CSS variable (`--v-*`). Switch themes with the toolbar above.
+- **Accessible** — keyboard support and ARIA wiring are part of every component; the a11y panel runs axe on each story.
+- **Tree-shakable** — ESM with one module per component; import only what you use.
+
+```ts
+import { createApp } from 'vue'
+import { createVioletUI } from 'violet-ui'
+import 'violet-ui/style.css'
+
+createApp(App).use(createVioletUI()).mount('#app')
+```

@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "../..",
+    "types": ["vite/client"]
+  },
+  "include": ["src/**/*", "../../packages/*/src/**/*"],
+  "exclude": ["../../packages/*/src/**/*.spec.ts", "../../packages/*/src/**/*.stories.ts"]
+}

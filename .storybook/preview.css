@@ -1,0 +1,10 @@
+html,
+body {
+  background: var(--v-color-background);
+  color: var(--v-color-text);
+  font-family: var(--v-font-family);
+}
+
+.docs-story {
+  background: var(--v-color-background);
+}

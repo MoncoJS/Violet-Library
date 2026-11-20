@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "violet-ui/violet-ui" }],
+  "commit": false,
+  "fixed": [["violet-ui", "@violet-ui/*"]],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": ["@violet-ui/docs", "@violet-ui/playground"],
+  "privatePackages": { "version": false, "tag": false }
+}

@@ -1,0 +1,20 @@
+{
+  "//": "Editor / Storybook config. Package builds use their own tsconfig and resolve siblings through node_modules (dist types).",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "types": ["vite/client", "node", "vitest/globals"],
+    "paths": {
+      "@violet-ui/*": ["packages/*/src/index.ts"],
+      "violet-ui": ["packages/violet-ui/src/index.ts"]
+    }
+  },
+  "include": [
+    "packages/*/src/**/*",
+    "apps/playground/src/**/*",
+    ".storybook/**/*",
+    "tooling/**/*",
+    "scripts/**/*"
+  ]
+}

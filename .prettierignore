@@ -1,0 +1,8 @@
+dist
+coverage
+storybook-static
+.turbo
+bun.lock
+.vitepress/cache
+.changeset/*.md
+docs/PROJECT_BRIEF.md
