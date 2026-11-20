@@ -26,3 +26,60 @@
   display: grid;
   max-width: 420px;
 }
+
+.demo--grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  align-items: start;
+}
+
+.demo .demo {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* VitePress styles bare tables/lists inside .vp-doc; keep component markup untouched */
+.vp-doc .v-table__table,
+.vp-doc .v-calendar__grid {
+  display: table;
+  margin: 0;
+  overflow: visible;
+}
+.vp-doc .v-table__table tr,
+.vp-doc .v-calendar__grid tr,
+.vp-doc .v-table__table th,
+.vp-doc .v-table__table td,
+.vp-doc .v-calendar__grid th,
+.vp-doc .v-calendar__grid td {
+  border: 0;
+  background: none;
+}
+.vp-doc .v-table__table th,
+.vp-doc .v-table__table td {
+  border-bottom: 1px solid var(--v-color-border);
+}
+.vp-doc .v-calendar__grid td,
+.vp-doc .v-calendar__grid th {
+  padding: 1px 0;
+}
+.vp-doc .demo ul,
+.vp-doc .demo ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.vp-doc .demo li + li {
+  margin-top: 0;
+}
+.vp-doc .demo p {
+  margin: 0;
+  line-height: inherit;
+}
+.vp-doc .demo h2,
+.vp-doc .demo h3 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  letter-spacing: normal;
+}

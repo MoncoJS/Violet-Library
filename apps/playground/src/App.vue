@@ -22,6 +22,7 @@ import {
   useToast,
 } from 'violet-ui'
 import { ref } from 'vue'
+import Showcase from './Showcase.vue'
 
 const theme = useTheme()
 const toast = useToast()
@@ -205,6 +206,8 @@ function simulateExport() {
       </div>
     </section>
   </main>
+
+  <Showcase />
 
   <VToaster />
 </template>

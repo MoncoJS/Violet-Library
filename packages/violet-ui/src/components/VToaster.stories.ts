@@ -10,7 +10,14 @@ const meta = {
   argTypes: {
     position: {
       control: 'select',
-      options: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'],
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
     },
   },
   args: { position: 'bottom-right' },

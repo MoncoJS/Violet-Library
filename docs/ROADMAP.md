@@ -1,50 +1,57 @@
 # Roadmap
 
-Status of the component set from the [project brief](./PROJECT_BRIEF.md).
+Status of the component set from the [project brief](./PROJECT_BRIEF.md). All components ship in the single `violet-ui` package (tree-shakeable, one module per component).
 
 ✅ shipped · ⬜ planned
 
-## Actions — `@violet-ui/core`
+## Actions
 
-✅ VButton · ✅ VIconButton · ✅ VButtonGroup · ✅ VSpinner (internal primitive, exported)
+✅ VButton · ✅ VIconButton · ✅ VButtonGroup · ✅ VSpinner
 
-## Forms — `@violet-ui/forms`
+## Forms
 
-✅ VInput · ⬜ VTextarea · ⬜ VPasswordInput · ⬜ VNumberInput · ⬜ VSelect · ⬜ VMultiSelect · ⬜ VAutocomplete · ⬜ VCheckbox · ⬜ VCheckboxGroup · ⬜ VRadio · ⬜ VRadioGroup · ⬜ VSwitch
+✅ VInput · ✅ VTextarea · ✅ VPasswordInput · ✅ VNumberInput · ✅ VSelect · ✅ VMultiSelect · ✅ VAutocomplete · ✅ VCheckbox · ✅ VCheckboxGroup · ✅ VRadio · ✅ VRadioGroup · ✅ VSwitch · ✅ VFormField (shared frame)
 
-Date: ⬜ VDatePicker · ⬜ VDateRangePicker · ⬜ VTimePicker
-Upload: ⬜ VUpload · ⬜ VImageUpload
+Date: ✅ VDatePicker · ✅ VDateRangePicker · ✅ VTimePicker · ✅ VCalendar
+Upload: ✅ VUpload · ✅ VImageUpload
 
-## Feedback — `@violet-ui/feedback`
+## Feedback
 
-✅ VToast / VToaster · ⬜ VAlert · ⬜ VSnackbar · ⬜ VProgress · ⬜ VSkeleton · ⬜ VLoadingOverlay
+✅ VToast / VToaster · ✅ VAlert · ✅ VSnackbar · ✅ VProgress · ✅ VSkeleton · ✅ VLoadingOverlay
 
-## Overlay — `@violet-ui/overlay` (private)
+## Overlay
 
-⬜ VModal · ⬜ VDialog · ⬜ VDrawer · ⬜ VTooltip · ⬜ VPopover
+✅ VModal · ✅ VDialog · ✅ VDrawer · ✅ VTooltip · ✅ VPopover
 
-## Navigation — `@violet-ui/navigation` (private)
+## Navigation
 
-⬜ VTabs · ⬜ VPagination · ⬜ VMenu · ⬜ VDropdown · ⬜ VBreadcrumb
+✅ VTabs · ✅ VPagination · ✅ VMenu · ✅ VDropdown · ✅ VBreadcrumb
 
-## Data display — `@violet-ui/data-display` (private)
+## Data display
 
-⬜ VAvatar · ⬜ VBadge · ⬜ VChip · ⬜ VTag · ⬜ VCard · ⬜ VList · ⬜ VAccordion · ⬜ VTimeline · ⬜ VEmptyState
+✅ VAvatar · ✅ VBadge · ✅ VChip · ✅ VTag · ✅ VCard · ✅ VList · ✅ VAccordion · ✅ VTimeline · ✅ VEmptyState
 
-## Data table — `@violet-ui/data-table` (private)
+## Data table
 
-⬜ VDataTable — sorting, search, pagination, row selection, column visibility, CSV export, responsive mode
+✅ VDataTable — sorting (multi-column), search, pagination, row selection, column visibility, CSV export, responsive card mode, server mode
 
-## Composables — `@violet-ui/composables`
+## Composables
 
 ✅ useForm · ✅ useField · ✅ useValidation · ✅ useToast · ✅ useTheme
 ✅ Rules: required, email, min, max, regex, confirmed
 
+## Next
+
+⬜ Per-component unit tests for every component (core behaviours are covered in `components.spec.ts`)
+⬜ Visual regression tests for Storybook
+⬜ Virtual scrolling for VDataTable / VSelect with very large data sets
+⬜ Split into scoped packages (`@violet-ui/forms`, …) if consumers need independent versioning
+
 ## Adding a component (checklist)
 
-1. `packages/<pkg>/src/components/VThing/{VThing.vue,types.ts,VThing.spec.ts,VThing.stories.ts}`
-2. Export from `packages/<pkg>/src/index.ts` with `withInstall`.
-3. Add the name to `packages/violet-ui/src/components.ts` **and** `packages/violet-ui/volar.d.ts` (a test enforces this).
-4. If the package was private: remove `"private": true`, add `publishConfig`, the `./style.css` export, and `@import` it in `packages/violet-ui/styles/index.css`.
-5. Docs page in `apps/docs/components/`.
+1. `packages/violet-ui/src/components/<group>/VThing.vue` (`<script setup lang="ts">`, exported `ThingProps` interface).
+2. Styles in `packages/violet-ui/src/styles/<group>.css`, using `--v-*` tokens and `v-thing__part` / `is-state` classes.
+3. Export from `src/components/index.ts` with `withInstall`.
+4. Add the name to `src/resolver.ts` and `volar.d.ts`.
+5. Tests in `*.spec.ts`, a story in `*.stories.ts`, a docs page in `apps/docs/components/`.
 6. `bun changeset`.

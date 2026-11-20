@@ -436,7 +436,8 @@ const kebab = (s: string) => s.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)
 export function themeToVars(theme: ThemeDefinition): Record<string, string> {
   const vars: Record<string, string> = {}
   for (const [k, v] of Object.entries(theme.colors))
-    if (!(colorRoles as readonly string[]).includes(k)) vars[`${PREFIX}-color-${kebab(k)}`] = v as string
+    if (!(colorRoles as readonly string[]).includes(k))
+      vars[`${PREFIX}-color-${kebab(k)}`] = v as string
   for (const role of colorRoles)
     for (const [k, v] of Object.entries(theme.colors[role])) {
       const suffix = k === 'base' ? '' : `-${kebab(k)}`
@@ -583,7 +584,12 @@ export function createThemeManager(options: ThemeManagerOptions = {}): ThemeMana
   const renderStyles = () => {
     const themes = Object.fromEntries([...custom].map((n) => [n, registry[n]!]))
     return Object.keys(themes).length
-      ? renderThemeCss({ themes, defaultTheme: '', systemDarkTheme: false, includeGlobalTokens: false })
+      ? renderThemeCss({
+          themes,
+          defaultTheme: '',
+          systemDarkTheme: false,
+          includeGlobalTokens: false,
+        })
       : ''
   }
 

@@ -16,7 +16,7 @@ permissions:
 jobs:
   release:
     name: Version or publish
-    if: github.repository_owner == 'violet-ui'
+    if: github.repository_owner == 'MoncoJS'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -53,7 +53,7 @@ jobs:
 
   deploy-storybook:
     name: Deploy Storybook to GitHub Pages
-    if: github.repository_owner == 'violet-ui'
+    if: github.repository_owner == 'MoncoJS'
     runs-on: ubuntu-latest
     permissions:
       contents: read

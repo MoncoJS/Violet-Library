@@ -1,57 +1,42 @@
-import {
-  getCurrentInstance,
-  inject,
-  type App,
-  type Component,
-  type Plugin,
-} from 'vue'
+import { getCurrentInstance, inject, type App, type Component, type InjectionKey } from 'vue'
+import './styles/tokens.css'
 import './style.css'
-import _VButton from './components/VButton.vue'
-import _VButtonGroup from './components/VButtonGroup.vue'
-import _VIconButton from './components/VIconButton.vue'
-import _VInput from './components/VInput.vue'
-import _VSpinner from './components/VSpinner.vue'
-import _VToast from './components/VToast.vue'
-import _VToaster from './components/VToaster.vue'
-import {
-  createThemeManager,
-  isClient,
-  type ThemeManager,
-  type ThemeManagerOptions,
-} from './theme'
+import './styles/forms.css'
+import './styles/date-upload.css'
+import './styles/feedback-overlay.css'
+import './styles/nav-display.css'
+import './styles/table.css'
+import './styles/roles.css'
+import { createThemeManager, isClient, type ThemeManager, type ThemeManagerOptions } from './theme'
 import { createToastStore, TOAST_KEY, type ToastStore, type ToastStoreOptions } from './toast'
 
 export * from './theme'
 export * from './form'
 export * from './toast'
 export * from './icons'
+export * from './components'
 export type { ButtonProps, ButtonVariant } from './components/context'
-
-// ---------------------------------------------------------------- components
-
-type WithInstall<T> = T & Plugin
-export function withInstall<T extends Component>(main: T, ...extra: Component[]): WithInstall<T> {
-  const c = main as WithInstall<T>
-  c.install = (app: App) => {
-    for (const comp of [main, ...extra]) {
-      const name = (comp as { name?: string }).name
-      if (name) app.component(name, comp)
-    }
-  }
-  return c
-}
-
-export const VButton = /* @__PURE__ */ withInstall(_VButton)
-export const VIconButton = /* @__PURE__ */ withInstall(_VIconButton)
-export const VButtonGroup = /* @__PURE__ */ withInstall(_VButtonGroup)
-export const VSpinner = /* @__PURE__ */ withInstall(_VSpinner)
-export const VInput = /* @__PURE__ */ withInstall(_VInput)
-export const VToast = /* @__PURE__ */ withInstall(_VToast)
-export const VToaster = /* @__PURE__ */ withInstall(_VToaster)
+export * from './utils/date'
+export type { UploadItem } from './components/upload/VUpload.vue'
+export type { DateRange, DateRangePreset } from './components/date/VDateRangePicker.vue'
+export type {
+  DataTableColumn,
+  DataTableQuery,
+  SortState,
+  SortDirection,
+} from './components/table/types'
+export { toCSV, downloadCSV } from './components/table/csv'
+export type { TabItem } from './components/navigation/VTabs.vue'
+export type { MenuItem } from './components/navigation/VMenu.vue'
+export type { BreadcrumbItem } from './components/navigation/VBreadcrumb.vue'
+export type { ListItem } from './components/display/VList.vue'
+export type { AccordionItem } from './components/display/VAccordion.vue'
+export type { TimelineItem } from './components/display/VTimeline.vue'
+export type { OptionInput, Placement, SelectOption } from './utils/dom'
 
 // ---------------------------------------------------------------- useTheme
 
-export const THEME_KEY = Symbol('violet-ui:theme') as import('vue').InjectionKey<ThemeManager>
+export const THEME_KEY: InjectionKey<ThemeManager> = Symbol('violet-ui:theme')
 
 let fallbackTheme: ThemeManager | undefined
 export function useTheme(): ThemeManager {

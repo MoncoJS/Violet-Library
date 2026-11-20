@@ -3,12 +3,7 @@ import { isClient, type ColorRole } from './theme'
 
 export type ToastColor = Extract<ColorRole, 'success' | 'danger' | 'warning' | 'info' | 'neutral'>
 export type ToastPosition =
-  | 'top-left'
-  | 'top-center'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-center'
-  | 'bottom-right'
+  'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
 
 export interface ToastAction {
   label: string
@@ -57,7 +52,10 @@ const nextId = (prefix = 'v') => `${prefix}-${(uid += 1)}`
 export function createToastStore(options: ToastStoreOptions = {}) {
   const { max = 5, duration: defaultDuration = 5000, position = 'bottom-right' } = options
   const toasts = shallowRef<Toast[]>([])
-  const timers = new Map<string, { handle?: ReturnType<typeof setTimeout>; remaining: number; startedAt: number }>()
+  const timers = new Map<
+    string,
+    { handle?: ReturnType<typeof setTimeout>; remaining: number; startedAt: number }
+  >()
 
   const clearTimer = (id: string) => {
     const t = timers.get(id)
@@ -67,7 +65,11 @@ export function createToastStore(options: ToastStoreOptions = {}) {
   const startTimer = (id: string, ms: number) => {
     clearTimer(id)
     if (!isClient || ms <= 0) return
-    timers.set(id, { handle: setTimeout(() => dismiss(id), ms), remaining: ms, startedAt: Date.now() })
+    timers.set(id, {
+      handle: setTimeout(() => dismiss(id), ms),
+      remaining: ms,
+      startedAt: Date.now(),
+    })
   }
 
   function dismiss(id: string) {
@@ -139,7 +141,8 @@ export function createToastStore(options: ToastStoreOptions = {}) {
     const id = show({ description: messages.loading, duration: 0, closable: false })
     try {
       const value = await p
-      const text = typeof messages.success === 'function' ? messages.success(value) : messages.success
+      const text =
+        typeof messages.success === 'function' ? messages.success(value) : messages.success
       update(id, { description: text, color: 'success', closable: true, duration: defaultDuration })
       return value
     } catch (err) {

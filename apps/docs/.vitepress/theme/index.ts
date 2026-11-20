@@ -1,14 +1,8 @@
 import type { Theme } from 'vitepress'
+import type { Component } from 'vue'
 import DefaultTheme from 'vitepress/theme'
-import {
-  VButton,
-  VButtonGroup,
-  VIconButton,
-  VInput,
-  VToaster,
-  createVioletUI,
-  renderThemeCss,
-} from 'violet-ui'
+import * as Violet from 'violet-ui'
+import { createVioletUI, renderThemeCss } from 'violet-ui'
 import './custom.css'
 
 // Token stylesheet (identical to the published `@violet-ui/theme/theme.css`).
@@ -29,7 +23,10 @@ export default {
     app.use(
       createVioletUI({
         theme: { storageKey: false },
-        components: { VButton, VButtonGroup, VIconButton, VInput, VToaster },
+        // register every component globally so markdown demos can use them
+        components: Object.fromEntries(
+          Object.entries(Violet).filter(([name]) => /^V[A-Z]/.test(name)),
+        ) as Record<string, Component>,
       }),
     )
   },

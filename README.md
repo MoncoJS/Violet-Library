@@ -41,7 +41,7 @@ const form = useForm({
 
 ## Status
 
-`0.x` — the foundation (theme, composables, build, release pipeline) and the first components (`VButton`, `VIconButton`, `VButtonGroup`, `VInput`, `VToast`/`VToaster`) are in place. See the [roadmap](docs/ROADMAP.md) for the rest of the component set.
+`0.x` — all components from the [project brief](docs/PROJECT_BRIEF.md) are implemented: actions, 12 form controls, date/time pickers, upload, feedback, overlays, navigation, data display and a full-featured `VDataTable`. See the [roadmap](docs/ROADMAP.md).
 
 ## Repository
 

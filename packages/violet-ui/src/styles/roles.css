@@ -1,0 +1,64 @@
+/* role colors for checkbox, radio, switch, progress, badge, chip (generated) */
+.v-check--primary,
+.v-switch--primary,
+.v-role--primary {
+  --_c: var(--v-color-primary);
+  --_cc: var(--v-color-primary-contrast);
+  --_soft: var(--v-color-primary-soft);
+  --_soft-text: var(--v-color-primary-soft-text);
+  --_soft-hover: var(--v-color-primary-soft-hover);
+}
+.v-check--secondary,
+.v-switch--secondary,
+.v-role--secondary {
+  --_c: var(--v-color-secondary);
+  --_cc: var(--v-color-secondary-contrast);
+  --_soft: var(--v-color-secondary-soft);
+  --_soft-text: var(--v-color-secondary-soft-text);
+  --_soft-hover: var(--v-color-secondary-soft-hover);
+}
+.v-check--success,
+.v-switch--success,
+.v-role--success {
+  --_c: var(--v-color-success);
+  --_cc: var(--v-color-success-contrast);
+  --_soft: var(--v-color-success-soft);
+  --_soft-text: var(--v-color-success-soft-text);
+  --_soft-hover: var(--v-color-success-soft-hover);
+}
+.v-check--warning,
+.v-switch--warning,
+.v-role--warning {
+  --_c: var(--v-color-warning);
+  --_cc: var(--v-color-warning-contrast);
+  --_soft: var(--v-color-warning-soft);
+  --_soft-text: var(--v-color-warning-soft-text);
+  --_soft-hover: var(--v-color-warning-soft-hover);
+}
+.v-check--danger,
+.v-switch--danger,
+.v-role--danger {
+  --_c: var(--v-color-danger);
+  --_cc: var(--v-color-danger-contrast);
+  --_soft: var(--v-color-danger-soft);
+  --_soft-text: var(--v-color-danger-soft-text);
+  --_soft-hover: var(--v-color-danger-soft-hover);
+}
+.v-check--info,
+.v-switch--info,
+.v-role--info {
+  --_c: var(--v-color-info);
+  --_cc: var(--v-color-info-contrast);
+  --_soft: var(--v-color-info-soft);
+  --_soft-text: var(--v-color-info-soft-text);
+  --_soft-hover: var(--v-color-info-soft-hover);
+}
+.v-check--neutral,
+.v-switch--neutral,
+.v-role--neutral {
+  --_c: var(--v-color-neutral);
+  --_cc: var(--v-color-neutral-contrast);
+  --_soft: var(--v-color-neutral-soft);
+  --_soft-text: var(--v-color-neutral-soft-text);
+  --_soft-hover: var(--v-color-neutral-soft-hover);
+}

@@ -104,7 +104,9 @@ const display = computed(() =>
       : String(props.modelValue),
 )
 const hasValue = computed(() => display.value.length > 0)
-const canClear = computed(() => props.clearable && hasValue.value && !props.disabled && !props.readonly)
+const canClear = computed(
+  () => props.clearable && hasValue.value && !props.disabled && !props.readonly,
+)
 const count = computed(() => display.value.length)
 
 function onInput(e: Event) {
@@ -226,7 +228,9 @@ defineExpose<InputExposed>({
       </span>
     </div>
     <div v-if="errorText || showHint || showCount" class="v-input__footer">
-      <p v-if="errorText" :id="errorId" class="v-input__error" aria-live="polite">{{ errorText }}</p>
+      <p v-if="errorText" :id="errorId" class="v-input__error" aria-live="polite">
+        {{ errorText }}
+      </p>
       <p v-else-if="showHint" :id="hintId" class="v-input__hint">
         <slot name="hint">{{ hint }}</slot>
       </p>

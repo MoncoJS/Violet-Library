@@ -89,12 +89,15 @@ const boundMessage = (dir: 'least' | 'most', kind: string, n: number, label: str
   }
 }
 
-export function required(message: RuleMessage = ({ label }) => `${label} is required`): ValidationRule {
+export function required(
+  message: RuleMessage = ({ label }) => `${label} is required`,
+): ValidationRule {
   return (v, ctx) => (isEmpty(v) ? msg(message, {}, labelOf(ctx)) : true)
 }
 
 export function email(message: RuleMessage = 'Please enter a valid email address'): ValidationRule {
-  return (v, ctx) => (isEmpty(v) ? true : EMAIL_RE.test(String(v)) || msg(message, {}, labelOf(ctx)))
+  return (v, ctx) =>
+    isEmpty(v) ? true : EMAIL_RE.test(String(v)) || msg(message, {}, labelOf(ctx))
 }
 
 export function min(n: number, message?: RuleMessage<{ min: number }>): ValidationRule {
@@ -232,9 +235,11 @@ export function useForm<T extends Record<string, unknown>>(options: UseFormOptio
   const submitCount = ref(0)
 
   const fieldNames = () =>
-    Array.from(new Set([...Object.keys(values), ...Object.keys(options.rules ?? {}), ...fields.keys()]))
+    Array.from(
+      new Set([...Object.keys(values), ...Object.keys(options.rules ?? {}), ...fields.keys()]),
+    )
   const rulesFor = (name: string): ValidationRule[] => [
-    ...(((options.rules as Record<string, ValidationRule[]> | undefined)?.[name]) ?? []),
+    ...((options.rules as Record<string, ValidationRule[]> | undefined)?.[name] ?? []),
     ...Array.from(fields.get(name) ?? []).flatMap((f) => f.rules),
   ]
   const labelFor = (name: string) => {
@@ -303,7 +308,8 @@ export function useForm<T extends Record<string, unknown>>(options: UseFormOptio
   function reset(next?: Partial<T>) {
     if (next) initial.value = { ...initial.value, ...clone(next) }
     const base = clone(initial.value)
-    for (const k of Object.keys(values)) if (!(k in base)) delete (values as Record<string, unknown>)[k]
+    for (const k of Object.keys(values))
+      if (!(k in base)) delete (values as Record<string, unknown>)[k]
     Object.assign(values, base)
     invalidateRuns()
     for (const k of Object.keys(errorMap)) delete errorMap[k]
@@ -312,7 +318,9 @@ export function useForm<T extends Record<string, unknown>>(options: UseFormOptio
   }
 
   function resetField(name: string) {
-    ;(values as Record<string, unknown>)[name] = clone((initial.value as Record<string, unknown>)[name])
+    ;(values as Record<string, unknown>)[name] = clone(
+      (initial.value as Record<string, unknown>)[name],
+    )
     runIds.set(name, (runIds.get(name) ?? 0) + 1)
     delete errorMap[name]
     delete touched[name]
@@ -365,7 +373,10 @@ export function useForm<T extends Record<string, unknown>>(options: UseFormOptio
     getErrors: (n) => errorMap[n] ?? [],
     isTouched: (n) => !!touched[n],
     isFieldDirty: (n) =>
-      !isEqual((values as Record<string, unknown>)[n], (initial.value as Record<string, unknown>)[n]),
+      !isEqual(
+        (values as Record<string, unknown>)[n],
+        (initial.value as Record<string, unknown>)[n],
+      ),
     setFieldValue,
     handleBlur,
     validateField,
@@ -459,7 +470,10 @@ export function useField<V = unknown>(name: string, options: UseFieldOptions<V> 
   const initial = clone(options.initialValue) as V
   const value = ref(clone(initial)) as Ref<V>
   const touched = ref(false)
-  const v = useValidation(value, rules as ValidationRule<V>[], { label: options.label, field: name })
+  const v = useValidation(value, rules as ValidationRule<V>[], {
+    label: options.label,
+    field: name,
+  })
   watch(value, () => {
     if (triggers.has('input') || v.error.value) void v.validate()
   })

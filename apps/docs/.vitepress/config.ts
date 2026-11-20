@@ -28,7 +28,15 @@ export default defineConfig({
         items: [
           { text: 'Button', link: '/components/button' },
           { text: 'Input', link: '/components/input' },
+          { text: 'Form controls', link: '/components/forms' },
+          { text: 'Date & time', link: '/components/date' },
+          { text: 'Upload', link: '/components/upload' },
           { text: 'Toast', link: '/components/toast' },
+          { text: 'Feedback', link: '/components/feedback' },
+          { text: 'Overlays', link: '/components/overlays' },
+          { text: 'Navigation', link: '/components/navigation' },
+          { text: 'Data display', link: '/components/data-display' },
+          { text: 'Data table', link: '/components/data-table' },
         ],
       },
       {
@@ -42,7 +50,7 @@ export default defineConfig({
         ],
       },
     ],
-    socialLinks: [{ icon: 'github', link: 'https://github.com/violet-ui/violet-ui' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/MoncoJS/Violet-Library' }],
     search: { provider: 'local' },
   },
   vite: {

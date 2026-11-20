@@ -86,3 +86,26 @@ body {
   font-size: var(--v-font-size-xs);
   overflow: auto;
 }
+
+.pg-showcase {
+  padding-top: 0;
+}
+.pg-showcase .pg-card {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+.pg-wide,
+.pg-showcase .pg-card {
+  grid-column: 1 / -1;
+}
+.pg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem 1.25rem;
+  align-items: start;
+}
+.pg-stack {
+  display: grid;
+  gap: 1rem;
+}
