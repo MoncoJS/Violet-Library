@@ -41,7 +41,23 @@ const preview: Preview = {
     controls: { expanded: true, matchers: { color: /(background|color)$/i } },
     a11y: { test: 'error' },
     backgrounds: { disable: true },
-    options: { storySort: { order: ['Introduction', 'Actions', 'Forms', 'Feedback'] } },
+    options: {
+      storySort: {
+        order: [
+          'Introduction',
+          'Actions',
+          'Forms',
+          'Date',
+          'Upload',
+          'Feedback',
+          'Overlay',
+          'Navigation',
+          'Data Display',
+          'Data',
+          'Overview',
+        ],
+      },
+    },
   },
 }
 
