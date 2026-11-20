@@ -77,7 +77,7 @@ jobs:
           DOCS_BASE: /${{ github.event.repository.name }}/
       - name: Build Storybook into the docs site
         run: bun run storybook:build -- -o apps/docs/.vitepress/dist/storybook
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: apps/docs/.vitepress/dist
       - id: deployment
